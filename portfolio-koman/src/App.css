@@ -404,3 +404,692 @@ td {
     width: max-content;
   }
 }
+
+.project-status {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-left: 4px solid #38bdf8;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 14px;
+  color: #cbd5e1;
+}
+
+.single-image-wrapper {
+  margin-top: 32px;
+}
+
+.project-image-card {
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.78);
+  border-radius: 18px;
+}
+
+.project-image {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.project-image-card div {
+  padding: 20px;
+}
+
+.project-image-card h3 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.project-image-card p {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+/* ================= THEME AMELIORE ================= */
+
+:root {
+  --bg-main: #07111f;
+  --bg-secondary: #0d1b2e;
+  --bg-card: rgba(15, 32, 54, 0.86);
+  --bg-card-hover: rgba(20, 45, 75, 0.95);
+
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-soft: #94a3b8;
+
+  --primary: #38bdf8;
+  --primary-dark: #0284c7;
+  --accent: #8b5cf6;
+  --success: #22c55e;
+
+  --border-soft: rgba(148, 163, 184, 0.18);
+  --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* Fond général */
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 35%),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.10), transparent 35%),
+    var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Navbar */
+
+.navbar {
+  background: rgba(7, 17, 31, 0.86);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  color: var(--text-main);
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  color: var(--text-muted);
+}
+
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-main);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero */
+
+.hero,
+.project-hero {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.20), transparent 35%),
+    radial-gradient(circle at 85% 25%, rgba(139, 92, 246, 0.16), transparent 35%),
+    linear-gradient(135deg, #07111f 0%, #0d1b2e 55%, #061626 100%);
+}
+
+.hero h1,
+.project-hero h1 {
+  color: var(--text-main);
+  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero p,
+.project-hero p,
+.section p {
+  color: var(--text-muted);
+}
+
+/* Badges */
+
+.badge,
+.section-kicker {
+  color: var(--primary);
+}
+
+.badge {
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  background: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.08);
+}
+
+/* Boutons */
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--primary), #60a5fa);
+  color: #05111f;
+  box-shadow: 0 14px 35px rgba(56, 189, 248, 0.25);
+}
+
+.btn.secondary {
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--text-main);
+}
+
+.btn.ghost {
+  background: rgba(139, 92, 246, 0.10);
+  color: var(--text-muted);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+}
+
+/* Sections */
+
+.section {
+  background: linear-gradient(180deg, #07111f 0%, #0a1627 100%);
+  border-top: 1px solid var(--border-soft);
+}
+
+.dark-section {
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 35%),
+    #0d1b2e;
+}
+
+.section h2 {
+  color: var(--text-main);
+}
+
+/* Cartes */
+
+.skill-card,
+.project-card,
+.image-placeholder,
+.project-image-card {
+  background:
+    linear-gradient(180deg, rgba(15, 32, 54, 0.92), rgba(10, 24, 42, 0.92));
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.project-image-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.35);
+  background: var(--bg-card-hover);
+}
+
+.skill-card h3,
+.project-card h3,
+.project-image-card h3 {
+  color: var(--text-main);
+}
+
+.skill-card p,
+.project-card p,
+.project-image-card p {
+  color: var(--text-muted);
+}
+
+/* Photo accueil */
+
+.hero-photo {
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(56, 189, 248, 0.13);
+}
+
+.hero-photo-wrapper::before {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  opacity: 0.85;
+}
+
+.photo-card {
+  background: rgba(7, 17, 31, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* Tableaux */
+
+.table-wrapper {
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+table {
+  background: rgba(15, 32, 54, 0.88);
+}
+
+th {
+  background: rgba(56, 189, 248, 0.10);
+  color: var(--text-main);
+}
+
+td {
+  color: var(--text-muted);
+}
+
+/* Page projet */
+
+.project-status {
+  border-left: 4px solid var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-soft);
+}
+
+.project-image {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Footer */
+
+.footer {
+  background: #030712;
+  color: var(--text-soft);
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ==================================================
+   CYBERSECURITY ENGINEER THEME
+   À coller tout à la fin de App.css
+================================================== */
+
+:root {
+  --cyber-bg: #020617;
+  --cyber-bg-2: #07111f;
+  --cyber-card: rgba(8, 18, 32, 0.92);
+  --cyber-card-2: rgba(15, 23, 42, 0.96);
+
+  --cyber-green: #22c55e;
+  --cyber-cyan: #06b6d4;
+  --cyber-blue: #2563eb;
+  --cyber-purple: #7c3aed;
+
+  --cyber-text: #f8fafc;
+  --cyber-muted: #cbd5e1;
+  --cyber-soft: #94a3b8;
+
+  --cyber-border: rgba(34, 197, 94, 0.28);
+  --cyber-shadow: 0 0 35px rgba(6, 182, 212, 0.16);
+}
+
+/* GLOBAL */
+
+body {
+  background:
+    linear-gradient(rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.96)),
+    radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.18), transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.20), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(124, 58, 237, 0.18), transparent 35%),
+    #020617 !important;
+  color: var(--cyber-text) !important;
+}
+
+/* Effet grille cyber discret */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 80%);
+  z-index: -1;
+}
+
+/* NAVBAR */
+
+.navbar {
+  background: rgba(2, 6, 23, 0.88) !important;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.25) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.logo {
+  color: var(--cyber-green) !important;
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo::before {
+  content: "> ";
+  color: var(--cyber-cyan);
+}
+
+.nav-links a {
+  color: var(--cyber-muted) !important;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--cyber-green) !important;
+}
+
+/* HERO */
+
+.hero,
+.project-hero {
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, 0.98), rgba(7, 17, 31, 0.96)),
+    radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.22), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.20), transparent 32%),
+    radial-gradient(circle at 60% 85%, rgba(124, 58, 237, 0.20), transparent 38%) !important;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+}
+
+.hero h1,
+.project-hero h1 {
+  color: var(--cyber-text) !important;
+  text-shadow:
+    0 0 22px rgba(6, 182, 212, 0.25),
+    0 0 40px rgba(34, 197, 94, 0.12) !important;
+}
+
+.hero h1::after,
+.project-hero h1::after {
+  content: "_";
+  color: var(--cyber-green);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.hero p,
+.project-hero p {
+  color: var(--cyber-muted) !important;
+}
+
+/* BADGES */
+
+.badge,
+.section-kicker {
+  color: var(--cyber-green) !important;
+  font-family: "Courier New", monospace;
+}
+
+.badge {
+  background: rgba(34, 197, 94, 0.10) !important;
+  border: 1px solid rgba(34, 197, 94, 0.45) !important;
+  box-shadow: 0 0 22px rgba(34, 197, 94, 0.16) !important;
+}
+
+/* BUTTONS */
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--cyber-green), var(--cyber-cyan)) !important;
+  color: #020617 !important;
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.28) !important;
+}
+
+.btn.secondary {
+  background: rgba(6, 182, 212, 0.08) !important;
+  color: var(--cyber-cyan) !important;
+  border: 1px solid rgba(6, 182, 212, 0.45) !important;
+}
+
+.btn.ghost {
+  background: rgba(124, 58, 237, 0.10) !important;
+  color: #ddd6fe !important;
+  border: 1px solid rgba(124, 58, 237, 0.45) !important;
+}
+
+.btn:hover {
+  transform: translateY(-3px) !important;
+  filter: brightness(1.15);
+}
+
+/* SECTIONS */
+
+.section {
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(7, 17, 31, 0.98)) !important;
+  border-top: 1px solid rgba(34, 197, 94, 0.14) !important;
+}
+
+.dark-section {
+  background:
+    linear-gradient(180deg, rgba(3, 7, 18, 0.98), rgba(8, 18, 32, 0.98)) !important;
+}
+
+.section h2 {
+  color: var(--cyber-text) !important;
+}
+
+.section h2::before {
+  content: "# ";
+  color: var(--cyber-green);
+  font-family: "Courier New", monospace;
+}
+
+.section p {
+  color: var(--cyber-muted) !important;
+}
+
+/* CARDS */
+
+.skill-card,
+.project-card,
+.image-placeholder,
+.project-image-card {
+  background:
+    linear-gradient(180deg, rgba(8, 18, 32, 0.96), rgba(2, 6, 23, 0.96)) !important;
+  border: 1px solid rgba(34, 197, 94, 0.22) !important;
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.38),
+    0 0 25px rgba(6, 182, 212, 0.08) !important;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.project-image-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(34, 197, 94, 0.55) !important;
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(34, 197, 94, 0.18) !important;
+}
+
+.skill-card h3,
+.project-card h3,
+.project-image-card h3 {
+  color: var(--cyber-green) !important;
+}
+
+.skill-card h3::before,
+.project-card h3::before {
+  content: "▸ ";
+  color: var(--cyber-cyan);
+}
+
+.skill-card p,
+.project-card p,
+.project-image-card p {
+  color: var(--cyber-muted) !important;
+}
+
+/* TABLEAUX */
+
+.table-wrapper {
+  border: 1px solid rgba(34, 197, 94, 0.25) !important;
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.10) !important;
+}
+
+table {
+  background: rgba(2, 6, 23, 0.94) !important;
+}
+
+th {
+  background: rgba(34, 197, 94, 0.14) !important;
+  color: var(--cyber-green) !important;
+  font-family: "Courier New", monospace;
+}
+
+td {
+  color: var(--cyber-muted) !important;
+}
+
+tr:hover td {
+  background: rgba(6, 182, 212, 0.06) !important;
+}
+
+/* PHOTO ACCUEIL */
+
+.hero-photo {
+  border: 2px solid rgba(34, 197, 94, 0.45) !important;
+  box-shadow:
+    0 0 40px rgba(34, 197, 94, 0.18),
+    0 0 80px rgba(6, 182, 212, 0.12) !important;
+}
+
+.hero-photo-wrapper::before {
+  background: linear-gradient(135deg, var(--cyber-green), var(--cyber-cyan), var(--cyber-purple)) !important;
+}
+
+.photo-card {
+  background: rgba(2, 6, 23, 0.94) !important;
+  border: 1px solid rgba(34, 197, 94, 0.35) !important;
+}
+
+.photo-card span {
+  color: var(--cyber-green) !important;
+}
+
+/* PAGE PROJET */
+
+.project-status {
+  background: rgba(34, 197, 94, 0.08) !important;
+  border-left: 4px solid var(--cyber-green) !important;
+  color: var(--cyber-muted) !important;
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.12) !important;
+}
+
+.project-image {
+  border-bottom: 1px solid rgba(34, 197, 94, 0.22) !important;
+}
+
+/* LISTES */
+
+.clean-list li {
+  color: var(--cyber-muted) !important;
+}
+
+.clean-list li::marker {
+  color: var(--cyber-green);
+}
+
+/* FOOTER */
+
+.footer {
+  background: #020617 !important;
+  border-top: 1px solid rgba(34, 197, 94, 0.22) !important;
+  color: var(--cyber-soft) !important;
+}
+
+/* ==================================================
+   CORRECTION HERO PAGE PROJET SOC
+   À coller tout à la fin de App.css
+================================================== */
+
+.project-page .project-hero {
+  max-width: none !important;
+  width: 100% !important;
+  min-height: 72vh !important;
+  padding: 110px 8% 90px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.project-page .project-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.86) 55%, rgba(2, 6, 23, 0.98) 100%),
+    radial-gradient(circle at 15% 35%, rgba(34, 197, 94, 0.22), transparent 30%),
+    radial-gradient(circle at 75% 30%, rgba(6, 182, 212, 0.18), transparent 34%);
+  z-index: 0;
+}
+
+.project-page .project-hero::after {
+  content: "SOC//LAB";
+  position: absolute;
+  right: 8%;
+  bottom: 12%;
+  font-family: "Courier New", monospace;
+  font-size: clamp(46px, 8vw, 130px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: rgba(34, 197, 94, 0.045);
+  z-index: 0;
+}
+
+.project-page .project-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.project-page .project-hero .badge {
+  margin-bottom: 24px !important;
+}
+
+.project-page .project-hero h1 {
+  max-width: 900px !important;
+  font-size: clamp(48px, 8vw, 104px) !important;
+  line-height: 0.95 !important;
+  margin: 0 0 28px !important;
+}
+
+.project-page .project-hero p:not(.badge) {
+  max-width: 760px !important;
+  font-size: 22px !important;
+  line-height: 1.75 !important;
+  color: #cbd5e1 !important;
+}
+
+.project-page .project-hero .hero-actions {
+  margin-top: 34px !important;
+  display: flex !important;
+  gap: 18px !important;
+  flex-wrap: wrap !important;
+}
+
+.project-page .project-hero .btn {
+  font-size: 16px !important;
+  padding: 15px 24px !important;
+  border-radius: 16px !important;
+}
+
+/* Évite que le curseur "_" rende le titre trop bizarre sur cette page */
+.project-page .project-hero h1::after {
+  content: "" !important;
+}
+
+/* Version mobile */
+@media (max-width: 760px) {
+  .project-page .project-hero {
+    padding: 80px 6% 70px !important;
+    min-height: auto !important;
+  }
+
+  .project-page .project-hero h1 {
+    font-size: clamp(42px, 14vw, 72px) !important;
+  }
+
+  .project-page .project-hero p:not(.badge) {
+    font-size: 18px !important;
+  }
+
+  .project-page .project-hero::after {
+    display: none;
+  }
+}
