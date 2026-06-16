@@ -1093,3 +1093,185 @@ tr:hover td {
     display: none;
   }
 }
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+
+.skill-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  color: var(--cyber-muted);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.skill-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--cyber-green);
+  font-weight: 900;
+}
+
+/* ==================================================
+   PAGE PROJET ACTIVE DIRECTORY — DESIGN CYBER
+================================================== */
+
+.ad-page .project-hero::after {
+  content: "AD//LAB" !important;
+}
+
+.ad-page .ad-hero {
+  background:
+    linear-gradient(90deg, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.86) 55%, rgba(2, 6, 23, 0.98) 100%),
+    radial-gradient(circle at 15% 35%, rgba(34, 197, 94, 0.22), transparent 30%),
+    radial-gradient(circle at 75% 30%, rgba(6, 182, 212, 0.18), transparent 34%),
+    url("/active-directory/images/roles_serveur.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.ad-page .project-hero h1 {
+  max-width: 1100px !important;
+}
+
+.ad-page .project-hero p:not(.badge) {
+  max-width: 880px !important;
+}
+
+.ad-page .capture-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ad-page .project-image-card {
+  overflow: hidden;
+}
+
+.ad-page .project-image-card img {
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ad-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+
+.ad-timeline article,
+.ad-events-grid article,
+.ad-video-card {
+  background:
+    linear-gradient(180deg, rgba(8, 18, 32, 0.96), rgba(2, 6, 23, 0.96));
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  border-radius: 18px;
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.38),
+    0 0 25px rgba(6, 182, 212, 0.08);
+}
+
+.ad-timeline article {
+  padding: 24px;
+}
+
+.ad-timeline article span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: var(--cyber-green);
+  font-family: "Courier New", monospace;
+  font-weight: 900;
+}
+
+.ad-timeline h3,
+.ad-events-grid h3,
+.ad-video-card h3 {
+  margin-top: 0;
+  color: var(--cyber-green);
+}
+
+.ad-timeline h3::before,
+.ad-video-card h3::before {
+  content: "▸ ";
+  color: var(--cyber-cyan);
+}
+
+.ad-timeline p,
+.ad-events-grid p,
+.ad-video-card p {
+  color: var(--cyber-muted);
+  line-height: 1.7;
+}
+
+.ad-video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 32px;
+}
+
+.ad-video-card {
+  overflow: hidden;
+}
+
+.ad-video-card video {
+  width: 100%;
+  display: block;
+  background: #000;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.ad-video-card div {
+  padding: 22px;
+}
+
+.ad-events-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.ad-events-grid article {
+  padding: 22px;
+}
+
+.ad-events-grid h3 {
+  font-size: 34px;
+  font-family: "Courier New", monospace;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  .ad-timeline,
+  .ad-video-grid,
+  .ad-page .capture-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-events-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .ad-events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-page .project-image-card img {
+    height: auto;
+  }
+}

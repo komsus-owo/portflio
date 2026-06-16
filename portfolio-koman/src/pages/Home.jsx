@@ -57,27 +57,47 @@ function Home() {
         </div>
 
         <div className="skills-grid">
-          <div className="skill-card">
-            <h3>Réseaux</h3>
-            <p>Segmentation, LAN, DMZ, SOC, NAT, routage, règles firewall, pfSense.</p>
-          </div>
+  <div className="skill-card">
+    <h3>Réseaux & segmentation</h3>
+    <ul className="skill-list">
+      <li>Conception d’architectures LAN, DMZ, SOC et WAN.</li>
+      <li>Configuration de règles firewall avec pfSense.</li>
+      <li>Mise en place du NAT, du routage et du filtrage inter-zones.</li>
+      <li>Tests de connectivité et diagnostic réseau avec ping, ipconfig, nslookup.</li>
+    </ul>
+  </div>
 
-          <div className="skill-card">
-            <h3>Cybersécurité</h3>
-            <p>Wazuh, Suricata, IDS/IPS, SIEM, supervision, détection et analyse d’alertes.</p>
-          </div>
+  <div className="skill-card">
+    <h3>Cybersécurité opérationnelle</h3>
+    <ul className="skill-list">
+      <li>Analyse d’alertes, de journaux système et d’événements de sécurité.</li>
+      <li>Compréhension du rôle des IDS/IPS, SIEM et outils de supervision.</li>
+      <li>Corrélation entre actions techniques et traces observées dans les logs.</li>
+      <li>Détection d’attaques réseau de base et exploitation de vulnérabilités.</li>
+    </ul>
+  </div>
 
-          <div className="skill-card">
-            <h3>Systèmes</h3>
-            <p>Linux, Windows, services réseau, Apache, configuration IP, logs système.</p>
-          </div>
+  <div className="skill-card">
+    <h3>Systèmes & identité</h3>
+    <ul className="skill-list">
+      <li>Installation et configuration de Windows Server 2022.</li>
+      <li>Déploiement d’un domaine Active Directory avec AD DS et DNS.</li>
+      <li>Création d’OU, de comptes utilisateurs et gestion des droits de base.</li>
+      <li>Administration Linux, services réseau, Apache et journaux système.</li>
+    </ul>
+  </div>
 
-          <div className="skill-card">
-            <h3>Développement</h3>
-            <p>React, JavaScript, HTML, CSS, Node.js, conception d’interfaces web.</p>
-          </div>
-        </div>
-      </section>
+  <div className="skill-card">
+    <h3>Documentation et Développement </h3>
+    <ul className="skill-list">
+      <li>Développement d’interfaces web avec React, JavaScript, HTML et CSS, node.js.</li>
+      <li>bonne connaissance de python pour le scripting ou le developpement.</li>
+      <li>Rédaction de rapports techniques structurés et exploitables.</li>
+      
+    </ul>
+  </div>
+</div>
+</section>
 
       <section id="projects" className="section">
         <div className="section-header">
@@ -87,11 +107,19 @@ function Home() {
 
         <div className="projects-grid">
           <ProjectCard
+            tag="Active Directory • Windows Server • DNS"
+            title="Infrastructure Active Directory complète"
+            description="Déploiement d’un domaine Windows avec contrôleur de domaine, gestion des utilisateurs, jonction client et analyse des événements de sécurité Windows."
+            link="/projets/active-directory"
+          />
+          
+          <ProjectCard
             tag="Cybersécurité • Réseau • SOC"
             title="Homelab SOC Niveau 2"
             description="Mise en place d’un laboratoire SOC avec pfSense, Wazuh, Suricata, LAN, DMZ, SOC, serveur web Ubuntu et machine attaquante Parrot."
             link="/projets/homelab-soc"
           />
+          
         </div>
       </section>
 
@@ -103,7 +131,7 @@ function Home() {
 
         <p>
           Je suis ouvert aux opportunités de stage, projets techniques et collaborations
-          dans les domaines des systèmes, réseaux, cybersécurité et développement.
+          dans les domaines des systèmes, réseaux et cybersécurité.
         </p>
 
         <div className="contact-box">
