@@ -1,343 +1,593 @@
+const learnings = [
+  {
+    number: '01',
+    title: 'Déployer une infrastructure d’identité',
+    description:
+      'J’ai appris à installer les rôles AD DS et DNS, à promouvoir un serveur Windows Server 2022 en contrôleur de domaine et à créer une nouvelle forêt Active Directory.',
+  },
+  {
+    number: '02',
+    title: 'Structurer un annuaire d’entreprise',
+    description:
+      'J’ai appris à organiser les comptes dans des unités organisationnelles, à créer des groupes de sécurité et à administrer les utilisateurs de manière centralisée.',
+  },
+  {
+    number: '03',
+    title: 'Appliquer des politiques de sécurité',
+    description:
+      'J’ai compris comment utiliser les GPO pour appliquer des règles communes aux utilisateurs et aux postes, notamment les politiques de mot de passe, de verrouillage et d’audit.',
+  },
+  {
+    number: '04',
+    title: 'Intégrer un poste client au domaine',
+    description:
+      'J’ai appris à configurer le DNS du client, à vérifier la résolution du domaine et à joindre une machine Windows au domaine starter.local.',
+  },
+  {
+    number: '05',
+    title: 'Analyser les journaux Windows',
+    description:
+      'J’ai appris à relier les actions d’administration aux événements enregistrés dans Windows Security, comme une connexion, la création d’un compte ou l’ajout à un groupe.',
+  },
+  {
+    number: '06',
+    title: 'Diagnostiquer les erreurs de configuration',
+    description:
+      'J’ai amélioré ma capacité à rechercher l’origine de problèmes liés au réseau, au DNS, à l’authentification et à la communication entre le client et le contrôleur de domaine.',
+  },
+];
+
+const results = [
+  {
+    value: '1',
+    label: 'Domaine Active Directory',
+    description: 'Forêt et domaine starter.local déployés.',
+  },
+  {
+    value: '1',
+    label: 'Contrôleur de domaine',
+    description: 'Windows Server 2022 avec AD DS et DNS.',
+  },
+  {
+    value: '1',
+    label: 'Poste client intégré',
+    description: 'Machine cliente jointe au domaine.',
+  },
+  {
+    value: '3',
+    label: 'Unités organisationnelles',
+    description: 'Annuaire structuré selon les besoins du laboratoire.',
+  },
+  {
+    value: '3',
+    label: 'Groupes de sécurité',
+    description: 'Gestion des droits et des accès par groupe.',
+  },
+  {
+    value: '3',
+    label: 'GPO de sécurité',
+    description: 'Mot de passe, verrouillage et audit des connexions.',
+  },
+  {
+    value: '5',
+    label: 'Event IDs étudiés',
+    description: 'Événements Windows utiles à une investigation SOC.',
+  },
+  {
+    value: '1',
+    label: 'Rapport technique',
+    description: 'Procédure, validations et résultats documentés.',
+  },
+];
+
+const securityEvents = [
+  {
+    id: '4624',
+    title: 'Connexion réussie',
+    description:
+      'Permet d’identifier une authentification réussie et d’étudier le type de connexion utilisé.',
+  },
+  {
+    id: '4625',
+    title: 'Échec de connexion',
+    description:
+      'Utile pour détecter des erreurs répétées, une tentative de brute force ou l’utilisation de mauvais identifiants.',
+  },
+  {
+    id: '4672',
+    title: 'Privilèges spéciaux',
+    description:
+      'Indique qu’une session a reçu des privilèges élevés, notamment pour un compte administrateur.',
+  },
+  {
+    id: '4720',
+    title: 'Création d’un utilisateur',
+    description:
+      'Trace la création d’un nouveau compte utilisateur dans Active Directory.',
+  },
+  {
+    id: '4732',
+    title: 'Ajout à un groupe',
+    description:
+      'Permet de surveiller l’ajout d’un utilisateur à un groupe de sécurité.',
+  },
+];
+
 const screenshots = [
   {
-    title: "Installation des rôles AD DS et DNS",
-    src: "/active-directory/images/roles_serveur.png",
+    title: 'Installation des rôles AD DS et DNS',
+    src: '/projects/active-directory/images/roles_serveur.png',
     description:
-      "Installation des rôles nécessaires au déploiement d’Active Directory et du service DNS.",
+      'Installation des rôles nécessaires au déploiement du domaine Active Directory et du service DNS.',
+    validation:
+      'Cette capture valide la préparation du serveur avant sa promotion en contrôleur de domaine.',
   },
   {
-    title: "Résolution DNS côté client",
-    src: "/active-directory/images/nslookup_client.png",
+    title: 'Résolution DNS côté client',
+    src: '/projects/active-directory/images/nslookup_client.png',
     description:
-      "Vérification de la résolution du domaine starter.local depuis le poste client.",
+      'Vérification de la résolution du domaine starter.local depuis le poste client.',
+    validation:
+      'Cette vérification confirme que le client utilise correctement le serveur DNS du domaine.',
   },
   {
-    title: "Création de l’OU StarterUsers",
-    src: "/active-directory/images/creation_ou.png",
+    title: 'Création de l’OU StarterUsers',
+    src: '/projects/active-directory/images/creation_ou.png',
     description:
-      "Organisation des utilisateurs dans une unité organisationnelle dédiée.",
+      'Création d’une unité organisationnelle dédiée à la gestion des comptes utilisateurs.',
+    validation:
+      'Cette capture démontre la structuration logique des objets dans l’annuaire.',
   },
   {
-    title: "Création des utilisateurs",
-    src: "/active-directory/images/creation_users.png",
+    title: 'Création des utilisateurs',
+    src: '/projects/active-directory/images/creation_users.png',
     description:
-      "Création de comptes utilisateurs dans Active Directory pour simuler un environnement d’entreprise.",
+      'Création de plusieurs comptes utilisateurs pour reproduire un environnement d’entreprise.',
+    validation:
+      'Cette étape valide la gestion centralisée des identités dans Active Directory.',
   },
   {
-    title: "Journaux Windows Security",
-    src: "/active-directory/images/logs_security.png",
+    title: 'Analyse des journaux Windows Security',
+    src: '/projects/active-directory/images/logs_security.png',
     description:
-      "Analyse des événements de sécurité générés par les actions réalisées dans le domaine.",
+      'Consultation des événements de sécurité produits par les actions réalisées dans le domaine.',
+    validation:
+      'Cette capture établit le lien entre l’administration Active Directory et les traces exploitables par un analyste SOC.',
   },
 ];
 
 const videos = [
   {
-    title: "Installation de Windows Server 2022 — Partie 1",
-    src: "/active-directory/videos/installation-windows-server-partie-1.mp4",
+    title: 'Installation de Windows Server 2022 — Partie 1',
+    src: '/projects/active-directory/videos/installation-windows-server-partie-1.mp4',
     description:
-      "Démarrage sur l’image ISO et lancement de l’installation de Windows Server 2022.",
+      'Démarrage sur l’image ISO et lancement de l’installation de Windows Server 2022.',
+    result:
+      'Préparation de la machine virtuelle destinée à devenir le contrôleur de domaine.',
   },
   {
-    title: "Installation de Windows Server 2022 — Partie 2",
-    src: "/active-directory/videos/installation-windows-server-partie-2.mp4",
+    title: 'Installation de Windows Server 2022 — Partie 2',
+    src: '/projects/active-directory/videos/installation-windows-server-partie-2.mp4',
     description:
-      "Finalisation de l’installation et configuration initiale du compte administrateur.",
+      'Finalisation de l’installation et configuration initiale du compte administrateur.',
+    result:
+      'Obtention d’un serveur Windows fonctionnel et prêt à être configuré.',
   },
   {
-    title: "Configuration IP du contrôleur de domaine",
-    src: "/active-directory/videos/configuration-ip-dc.mp4",
+    title: 'Configuration IP du contrôleur de domaine',
+    src: '/projects/active-directory/videos/configuration-ip-dc.mp4',
     description:
-      "Configuration réseau de SRV-DC01 et vérification de la connectivité avec le client.",
+      'Configuration réseau de SRV-DC01 et vérification de la communication avec le poste client.',
+    result:
+      'Mise en place d’un adressage stable nécessaire au fonctionnement d’Active Directory et du DNS.',
   },
   {
-    title: "Installation des rôles AD DS et DNS",
-    src: "/active-directory/videos/installation-ad-ds.mp4",
+    title: 'Installation des rôles AD DS et DNS',
+    src: '/projects/active-directory/videos/installation-ad-ds.mp4',
     description:
-      "Installation des rôles nécessaires à la mise en place d’Active Directory.",
+      'Installation des rôles permettant de déployer l’annuaire et le service de résolution de noms.',
+    result:
+      'Préparation du serveur pour sa promotion en contrôleur de domaine.',
   },
   {
-    title: "Promotion du serveur en contrôleur de domaine",
-    src: "/active-directory/videos/promotion-dc.mp4",
+    title: 'Promotion du serveur en contrôleur de domaine',
+    src: '/projects/active-directory/videos/promotion-dc.mp4',
     description:
-      "Promotion de SRV-DC01 en contrôleur de domaine et création de la forêt starter.local.",
+      'Promotion de SRV-DC01 et création de la forêt starter.local.',
+    result:
+      'Déploiement d’un domaine Active Directory opérationnel.',
   },
   {
-    title: "Création des utilisateurs",
-    src: "/active-directory/videos/creation-utilisateurs.mp4",
+    title: 'Création des utilisateurs',
+    src: '/projects/active-directory/videos/creation-utilisateurs.mp4',
     description:
-      "Création d’une OU et de comptes utilisateurs dans Active Directory.",
+      'Création d’une unité organisationnelle et de plusieurs comptes utilisateurs.',
+    result:
+      'Mise en place d’une gestion centralisée des identités.',
   },
   {
-    title: "Ajout de Marie au groupe RDP",
-    src: "/active-directory/videos/ajout-marie-rdp.mp4",
+    title: 'Ajout de Marie au groupe RDP',
+    src: '/projects/active-directory/videos/ajout-marie-rdp.mp4',
     description:
-      "Ajout de marie.dupont au groupe Remote Desktop Users pour autoriser l’accès distant.",
+      'Ajout du compte marie.dupont au groupe Remote Desktop Users.',
+    result:
+      'Attribution d’un accès distant à travers l’utilisation d’un groupe de sécurité.',
   },
 ];
 
-export default function ActiveDirectoryProject() {
+const suggestionSubject =
+  "Suggestion d'amélioration — Projet Active Directory";
+
+const suggestionBody = `Bonjour Joseph,
+
+J’ai consulté votre projet Active Directory et je souhaite vous proposer l’amélioration suivante :
+
+[Votre suggestion]
+
+Éléments concernés :
+
+[Architecture, GPO, sécurité, journalisation, documentation...]
+
+Bien cordialement,`;
+
+const suggestionMailto = `mailto:komanohouojoseph@gmail.com?subject=${encodeURIComponent(
+  suggestionSubject
+)}&body=${encodeURIComponent(suggestionBody)}`;
+
+function ActiveDirectoryProject() {
   return (
     <main className="project-page ad-page">
-      <section className="project-hero ad-hero">
-        <span className="badge">Active Directory • Windows Server • DNS</span>
+      {/* NOM DU PROJET */}
+      <section
+        className="project-hero ad-hero"
+        id="project-overview"
+      >
+        <p className="badge">
+          Active Directory • Windows Server • DNS • GPO • SOC
+        </p>
 
-        <h1>Infrastructure Active Directory complète</h1>
+        <h1>Infrastructure Active Directory sécurisée</h1>
 
         <p>
-          Déploiement d’une infrastructure d’identité Windows avec contrôleur de
-          domaine, gestion centralisée des utilisateurs, jonction client et
-          analyse des événements de sécurité Windows.
+          Déploiement d’un environnement Windows d’entreprise permettant de
+          centraliser les identités, d’appliquer des politiques de sécurité et
+          d’analyser les traces d’administration dans les journaux Windows.
         </p>
+
+        <nav
+          className="project-section-links"
+          aria-label="Navigation dans le projet"
+        >
+          <a className="section-link-btn" href="#context">
+            Pourquoi ce projet ?
+          </a>
+
+          <a className="section-link-btn" href="#learnings">
+            Ce que j’ai appris
+          </a>
+
+          <a className="section-link-btn" href="#results">
+            Résultats du projet
+          </a>
+        </nav>
 
         <div className="hero-actions">
           <a
             className="btn primary"
             href="/documents/rapport_active_directory.pdf"
-            target="_blank"
-            rel="noreferrer"
+            download="rapport_active_directory.pdf"
           >
             Télécharger le rapport
           </a>
 
-          <a className="btn secondary" href="#captures">
-            Voir les captures
+          <a className="btn secondary" href={suggestionMailto}>
+            Proposer une amélioration
           </a>
 
-          <a className="btn ghost" href="#videos">
-            Voir les vidéos
+          <a className="btn ghost" href="#screenshots">
+            Voir les preuves
           </a>
         </div>
+
+        <p className="project-feedback-text">
+          Ce projet reste évolutif. Les professionnels et passionnés de
+          cybersécurité peuvent me transmettre leurs remarques ou proposer des
+          améliorations techniques et méthodologiques.
+        </p>
       </section>
 
-      <section className="section">
-        <span className="section-kicker">Contexte</span>
-        <h2>Pourquoi ce projet ?</h2>
-
-        <p className="large-text">
-          J’ai réalisé ce projet pour mettre en pratique les bases d’une
-          infrastructure d’identité d’entreprise. Active Directory est au cœur de
-          nombreux environnements Windows : il permet de centraliser les comptes,
-          les ordinateurs, les groupes, les droits et l’authentification des
-          utilisateurs.
-        </p>
-
-        <p>
-          L’objectif était de construire un environnement fonctionnel avec un
-          contrôleur de domaine, un poste client joint au domaine, des comptes
-          utilisateurs organisés dans une OU, puis d’observer les événements de
-          sécurité générés dans les journaux Windows Security.
-        </p>
-
-        <div className="project-status">
-          <strong>État du projet :</strong> infrastructure Active Directory
-          fonctionnelle, documentée et enrichie avec des captures et des
-          séquences vidéo de démonstration.
+      {/* POURQUOI CE PROJET */}
+      <section className="section" id="context">
+        <div className="section-header">
+          <p className="section-kicker">Contexte</p>
+          <h2>Pourquoi ce projet ?</h2>
         </div>
-      </section>
 
-      <section className="section dark-section">
-        <span className="section-kicker">Architecture</span>
-        <h2>Environnement déployé</h2>
+        <div className="project-context-grid">
+          <article className="project-context-main">
+            <h3>Reproduire un environnement Windows d’entreprise</h3>
 
-        <div className="skills-grid">
-          <article className="skill-card">
-            <h3>SRV-DC01</h3>
             <p>
-              Serveur Windows Server 2022 promu en contrôleur de domaine pour
-              la forêt <strong>starter.local</strong>.
+              Active Directory constitue le socle de gestion des identités de
+              nombreuses organisations. Il permet de centraliser les comptes,
+              les ordinateurs, les groupes, les droits d’accès et
+              l’authentification des utilisateurs.
+            </p>
+
+            <p>
+              Une mauvaise configuration de l’annuaire, des privilèges ou des
+              politiques de sécurité peut toutefois faciliter une
+              compromission, une élévation de privilèges ou un mouvement
+              latéral dans le système d’information.
             </p>
           </article>
 
-          <article className="skill-card">
-            <h3>DNS</h3>
-            <p>
-              Service DNS utilisé pour permettre au client de résoudre le
-              domaine et localiser le contrôleur de domaine.
-            </p>
-          </article>
+          <article className="project-objective-card">
+            <p className="project-card-label">Objectif du laboratoire</p>
 
-          <article className="skill-card">
-            <h3>WKS-CLIENT01</h3>
-            <p>
-              Poste client joint au domaine afin de tester l’authentification
-              centralisée avec des comptes utilisateurs.
-            </p>
-          </article>
+            <h3>Comprendre, sécuriser et superviser</h3>
 
-          <article className="skill-card">
-            <h3>Windows Security Logs</h3>
             <p>
-              Journaux analysés pour relier les actions Active Directory aux
-              Event IDs de sécurité.
+              Mon objectif était de construire un environnement fonctionnel,
+              de gérer les identités et les accès, d’appliquer des politiques
+              de sécurité, puis d’observer les traces produites dans les
+              journaux Windows.
             </p>
           </article>
         </div>
       </section>
 
-      <section className="section">
-        <span className="section-kicker">Réalisation</span>
-        <h2>Étapes techniques réalisées</h2>
+      {/* CE QUE J’AI APPRIS */}
+      <section
+        className="section learning-highlight-section"
+        id="learnings"
+      >
+        <div className="section-container">
+          <div className="learning-highlight-header">
+            <div>
+              <p className="section-kicker">Apprentissages</p>
 
-        <div className="ad-timeline">
-          <article>
-            <span>01</span>
-            <h3>Installation de Windows Server 2022</h3>
-            <p>
-              Création des machines virtuelles et installation de l’environnement
-              Windows Server.
-            </p>
-          </article>
+              <h2>Ce que j’ai appris en réalisant ce projet</h2>
+            </div>
 
-          <article>
-            <span>02</span>
-            <h3>Configuration réseau du DC</h3>
-            <p>
-              Configuration IP du serveur, vérification de la connectivité et
-              préparation du rôle DNS.
-            </p>
-          </article>
+          </div>
 
-          <article>
-            <span>03</span>
-            <h3>Installation AD DS et DNS</h3>
-            <p>
-              Ajout des rôles nécessaires au déploiement de l’annuaire Active
-              Directory.
-            </p>
-          </article>
+          <div className="project-learning-grid">
+            {learnings.map((learning) => (
+              <article
+                className="project-learning-card"
+                key={learning.number}
+              >
+                <span className="learning-number">
+                  {learning.number}
+                </span>
 
-          <article>
-            <span>04</span>
-            <h3>Promotion en contrôleur de domaine</h3>
-            <p>
-              Création de la forêt Active Directory et du domaine
-              <strong> starter.local</strong>.
-            </p>
-          </article>
+                <h3>{learning.title}</h3>
 
-          <article>
-            <span>05</span>
-            <h3>Gestion des utilisateurs</h3>
-            <p>
-              Création de l’OU StarterUsers, création des comptes et ajout d’un
-              utilisateur au groupe RDP.
-            </p>
-          </article>
-
-          <article>
-            <span>06</span>
-            <h3>Analyse des événements</h3>
-            <p>
-              Consultation des journaux Windows Security et corrélation avec les
-              actions réalisées.
-            </p>
-          </article>
+                <p>{learning.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section dark-section" id="captures">
-        <span className="section-kicker">Preuves visuelles</span>
-        <h2>Captures clés du projet</h2>
+      {/* RÉSULTATS */}
+      <section className="section" id="results">
+        <div className="section-header">
+          <p className="section-kicker">Résultats</p>
 
-        <p>
-          Ces captures présentent les étapes importantes du projet : installation
-          des rôles Active Directory, vérification DNS, création des objets dans
-          l’annuaire et analyse des journaux de sécurité Windows.
-        </p>
+          <h2>Résultats du projet</h2>
 
-        <div className="capture-grid">
-          {screenshots.map((shot) => (
-            <article className="project-image-card" key={shot.title}>
-              <img className="project-image" src={shot.src} alt={shot.title} />
-              <div>
-                <h3>{shot.title}</h3>
-                <p>{shot.description}</p>
-              </div>
+          <p className="section-description">
+            Le laboratoire a abouti à une infrastructure fonctionnelle,
+            sécurisée par plusieurs politiques et documentée par des preuves
+            techniques.
+          </p>
+        </div>
+
+        <div className="project-results-grid">
+          {results.map((result) => (
+            <article
+              className="project-result-card"
+              key={result.label}
+            >
+              <strong>{result.value}</strong>
+
+              <h3>{result.label}</h3>
+
+              <p>{result.description}</p>
             </article>
           ))}
         </div>
+
+        <div className="project-result-details">
+          <article className="result-detail-card">
+            <p className="project-card-label">
+              Configuration obtenue
+            </p>
+
+            <h3>Un environnement d’identité centralisé</h3>
+
+            <ul className="project-clean-list">
+              <li>
+                Déploiement du domaine <strong>starter.local</strong>.
+              </li>
+
+              <li>
+                Installation des rôles <strong>AD DS</strong> et{' '}
+                <strong>DNS</strong>.
+              </li>
+
+              <li>
+                Intégration d’un poste client dans le domaine.
+              </li>
+
+              <li>
+                Création et organisation des utilisateurs, groupes et unités
+                organisationnelles.
+              </li>
+
+              <li>
+                Application de politiques de mot de passe, de verrouillage et
+                d’audit.
+              </li>
+            </ul>
+          </article>
+
+          <article className="result-detail-card">
+            <p className="project-card-label">
+              Livrables produits
+            </p>
+
+            <h3>Des résultats documentés et vérifiables</h3>
+
+            <ul className="project-clean-list">
+              <li>Rapport technique du laboratoire.</li>
+              <li>Captures d’écran des configurations principales.</li>
+              <li>Vidéos de démonstration des différentes phases.</li>
+              <li>Inventaire des événements Windows étudiés.</li>
+              <li>Synthèse des compétences développées.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div className="security-events-block">
+          <div className="security-events-heading">
+            <div>
+              <p className="section-kicker">Analyse SOC</p>
+
+              <h3>Événements Windows étudiés</h3>
+            </div>
+
+            <p>
+              Ces événements permettent de relier les actions réalisées dans
+              le domaine aux traces exploitables pendant une investigation.
+            </p>
+          </div>
+
+          <div className="ad-events-grid">
+            {securityEvents.map((event) => (
+              <article key={event.id}>
+                <span className="event-id">{event.id}</span>
+
+                <h3>{event.title}</h3>
+
+                <p>{event.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="section" id="videos">
-        <span className="section-kicker">Démonstration</span>
-        <h2>Séquences vidéo du projet</h2>
+      {/* CAPTURES */}
+      <section
+        className="section dark-section"
+        id="screenshots"
+      >
+        <div className="section-container">
+          <div className="section-header">
+            <p className="section-kicker">Preuves visuelles</p>
 
-        <p>
-          Les vidéos ci-dessous montrent les manipulations réalisées pendant le
-          projet : installation du serveur, configuration réseau, installation
-          d’Active Directory, promotion du contrôleur de domaine et gestion des
-          utilisateurs.
-        </p>
+            <h2>Captures d’écran</h2>
+
+            <p className="section-description">
+              Chaque capture confirme une configuration, un contrôle ou un
+              résultat obtenu pendant la réalisation du laboratoire.
+            </p>
+          </div>
+
+          <div className="capture-grid">
+            {screenshots.map((screenshot) => (
+              <article
+                className="project-image-card"
+                key={screenshot.title}
+              >
+                <img
+                  className="project-image"
+                  src={screenshot.src}
+                  alt={screenshot.title}
+                  loading="lazy"
+                />
+
+                <div>
+                  <h3>{screenshot.title}</h3>
+
+                  <p>{screenshot.description}</p>
+
+                  <p className="media-validation">
+                    <strong>Résultat validé :</strong>{' '}
+                    {screenshot.validation}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VIDÉOS */}
+      <section className="section" id="videos">
+        <div className="section-header">
+          <p className="section-kicker">Démonstrations</p>
+
+          <h2>Vidéos du projet</h2>
+
+          <p className="section-description">
+            Ces séquences montrent les principales manipulations réalisées,
+            depuis l’installation du serveur jusqu’à la gestion des
+            utilisateurs et des droits.
+          </p>
+        </div>
 
         <div className="ad-video-grid">
           {videos.map((video) => (
-            <article className="ad-video-card" key={video.title}>
+            <article
+              className="ad-video-card"
+              key={video.title}
+            >
               <video controls preload="metadata">
                 <source src={video.src} type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture vidéo.
+
+                Votre navigateur ne prend pas en charge la lecture de cette
+                vidéo.
               </video>
 
               <div>
                 <h3>{video.title}</h3>
+
                 <p>{video.description}</p>
+
+                <p className="media-validation">
+                  <strong>Résultat visible :</strong>{' '}
+                  {video.result}
+                </p>
               </div>
             </article>
           ))}
         </div>
-      </section>
 
-      <section className="section dark-section">
-        <span className="section-kicker">Analyse SOC</span>
-        <h2>Événements de sécurité observés</h2>
+        <div className="project-final-message">
+          <div>
+            <p className="project-card-label">
+              Projet évolutif
+            </p>
 
-        <p>
-          La partie sécurité du projet repose sur l’analyse des journaux Windows
-          Security. Les événements observés permettent de comprendre comment les
-          actions d’administration Active Directory laissent des traces
-          exploitables dans une logique SOC.
-        </p>
+            <h3>Vous avez une suggestion technique ?</h3>
 
-        <div className="ad-events-grid">
-          <article>
-            <h3>4624</h3>
-            <p>Connexion réussie d’un utilisateur du domaine.</p>
-          </article>
+            <p>
+              Je reste ouvert aux retours sur l’architecture, les GPO, le
+              durcissement, la supervision ou les scénarios de détection qui
+              pourraient enrichir ce laboratoire.
+            </p>
+          </div>
 
-          <article>
-            <h3>4720</h3>
-            <p>Création d’un compte utilisateur dans Active Directory.</p>
-          </article>
-
-          <article>
-            <h3>4724</h3>
-            <p>Réinitialisation du mot de passe d’un compte utilisateur.</p>
-          </article>
-
-          <article>
-            <h3>4732</h3>
-            <p>Ajout d’un utilisateur à un groupe de sécurité.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section">
-        <span className="section-kicker">Résultat</span>
-        <h2>Ce que ce projet démontre</h2>
-
-        <p>
-          Ce projet montre ma capacité à mettre en place une infrastructure
-          Active Directory complète, à gérer des identités dans un domaine
-          Windows et à exploiter les journaux de sécurité pour comprendre les
-          traces générées par les actions d’administration.
-        </p>
-
-        <div className="project-status">
-          <strong>Compétences mobilisées :</strong> Windows Server 2022, Active
-          Directory, AD DS, DNS, jonction domaine, gestion des utilisateurs,
-          Event Viewer, analyse des logs Windows Security et supervision SOC.
+          <a className="btn secondary" href={suggestionMailto}>
+            Proposer une amélioration
+          </a>
         </div>
       </section>
     </main>
   );
 }
+
+export default ActiveDirectoryProject;
