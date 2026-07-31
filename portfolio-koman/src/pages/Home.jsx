@@ -110,16 +110,11 @@ function Home() {
             </h2>
 
             <p className="hero-description">
-              Je développe une double compétence en Analyse des risques cyber et
-              en cybersécurité opérationnelle à travers des projets appliqués
-              en analyse de risques, audit cloud, investigation SOC et
-              sécurisation des infrastructures.
+              Je développe un profil polyvalent en réseaux et cybersécurité à travers des projets appliqués en administration des systèmes et réseaux, sécurisation des infrastructures, analyse de risques, audit et cybersécurité opérationnelle.
             </p>
 
             <p className="hero-search">
-              Je recherche actuellement un stage de fin d’études en
-              cybersécurité, notamment dans le conseil, la GRC, l’audit ou les
-              opérations SOC.
+              Je recherche actuellement un stage de fin d’études de 6 mois en réseaux et cybersécurité, notamment en architecture et sécurité réseau, intégration d’infrastructures, sécurité opérationnelle, audit ou gestion des risques.
             </p>
 
             <div className="hero-actions">
@@ -156,18 +151,11 @@ function Home() {
 
         <div className="about-content">
           <p>
-            Étudiant en dernière année de cycle ingénieur, spécialisé en
-            réseaux et sécurité informatique, je réalise des projets
-            reproduisant des situations rencontrées en entreprise : analyse de
-            risques, audit de sécurité, investigation SOC, gestion des
-            identités et segmentation réseau.
+            Étudiant en dernière année de cycle ingénieur, spécialisé en réseaux et sécurité informatique, je développe un profil polyvalent à travers des projets en administration des systèmes et réseaux, segmentation et sécurisation des infrastructures, gestion des identités, analyse de risques, audit et cybersécurité opérationnelle.
           </p>
 
           <p>
-            Mon objectif est de rejoindre un environnement exigeant dans lequel
-            je pourrai contribuer à l’évaluation des risques, à la protection
-            des systèmes d’information et à la production de recommandations
-            concrètes et directement exploitables.
+            Mon objectif est de rejoindre un environnement exigeant dans lequel je pourrai contribuer à l’administration et à la sécurisation des systèmes et réseaux, à l’analyse des risques ainsi qu’à l’amélioration concrète de la sécurité des systèmes d’information.
           </p>
         </div>
       </section>
@@ -313,7 +301,7 @@ function Home() {
       <p>
         <strong>LinkedIn :</strong>{' '}
         <a
-          href={linkedinUrl}
+          href="https://www.linkedin.com/in/ohouo-joseph-koman-814297374/"
           target="_blank"
           rel="noreferrer"
         >
